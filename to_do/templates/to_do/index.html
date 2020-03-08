@@ -1,0 +1,28 @@
+{% extends "to_do/base.html" %}
+
+{% block content %}
+  <div class="container">
+    <h1>To Do App</h1>
+    <table border="solid" class="table table-striped">
+      <thead>
+        <th>Task</th>
+        <th>Date</th>
+        <th>Completed</th>
+        <th>Delete</th>
+        <th>Update</th>
+      </thead>
+
+      {% for todo in all_to_dos %}
+      <tr>
+        <td>{{ todo.content }}</td>
+        <td>{{ todo.date_created }}</td>
+        <td>{{ todo.completed }}</td>
+        <td><a href="{% url "to_do:delete" todo.pk %}">Delete</a></td>
+        <td><a href="{% url "to_do:update" todo.pk %}">Update</a></td>
+      </tr>
+      {% endfor %}
+    </table>
+
+    <a href="{% url "to_do:create" %}">Create New Task</a>
+  </div>
+{% endblock %}
